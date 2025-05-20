@@ -1,0 +1,76 @@
+.penguin-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+}
+.penguin-svg {
+    width: 100%;
+    height: 100%;
+}
+.console {
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #0f0 #000;
+}
+.console::-webkit-scrollbar {
+    width: 8px;
+}
+.console::-webkit-scrollbar-track {
+    background: #000;
+}
+.console::-webkit-scrollbar-thumb {
+    background: #0f0;
+}
+.debug {
+    color: #0a0;
+    font-style: italic;
+}
+/* Expression styles */
+.based .beak { d: "M90,120 Q100,130 110,120"; } /* Smirk */
+.based .left-eye, .based .right-eye { transform: translateY(-5px); }
+.neutral .left-eyebrow { transform: rotate(30deg) translateY(5px); }
+.neutral .right-eyebrow { transform: rotate(-30deg) translateY(5px); }
+.neutral .left-eye, .neutral .right-eye { transform: scale(0.9) translateY(5px); }
+.neutral .beak { d: "M90,120 L100,130 L110,120"; } /* Open beak */
+/* Tamagotchi console styles */
+.tamagotchi-console {
+    background-color: #d3d3d3;
+    border: 8px solid #333;
+    border-radius: 20px;
+    padding: 20px;
+    width: 320px;
+    height: 240px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.tamagotchi-screen {
+    background-color: #2e4d2e; /* Green-tinted retro LCD */
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    width: 320px;
+    height: 200px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.1)),
+                     repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px); /* Pixelated effect */
+}
+.tamagotchi-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.tamagotchi-button {
+    width: 20px;
+    height: 20px;
+    background-color: #555;
+    border-radius: 50%;
+    border: 2px solid #222;
+}
