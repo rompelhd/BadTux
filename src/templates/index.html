@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>BadTux</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gray-900 text-green-400 font-mono p-6">
+    <div class="max-w-2xl mx-auto">
+        <div class="tamagotchi-console">
+            <div class="tamagotchi-screen">
+                <div class="penguin-container">
+                    <svg class="penguin-svg" id="penguin" viewBox="0 0 200 200">
+                        <!-- Body -->
+                        <ellipse cx="100" cy="100" rx="60" ry="80" fill="#000" stroke="#fff" stroke-width="4"/>
+                        <!-- Belly -->
+                        <ellipse cx="100" cy="120" rx="40" ry="50" fill="#fff"/>
+                        <!-- Left eye -->
+                        <circle class="left-eye" cx="80" cy="80" r="10" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <!-- Right eye -->
+                        <circle class="right-eye" cx="120" cy="80" r="10" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <!-- Left eyebrow -->
+                        <path class="left-eyebrow" d="M70,70 H90" stroke="#000" stroke-width="4"/>
+                        <!-- Right eyebrow -->
+                        <path class="right-eyebrow" d="M110,70 H130" stroke="#000" stroke-width="4"/>
+                        <!-- Beak -->
+                        <path class="beak" d="M90,110 L100,120 L110,110" fill="#f90"/>
+                        <!-- Left foot -->
+                        <ellipse cx="80" cy="180" rx="15" ry="10" fill="#f90"/>
+                        <!-- Right foot -->
+                        <ellipse cx="120" cy="180" rx="15" ry="10" fill="#f90"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="tamagotchi-buttons">
+                <div class="tamagotchi-button"></div>
+                <div class="tamagotchi-button"></div>
+                <div class="tamagotchi-button"></div>
+            </div>
+        </div>
+        <div class="mb-4 text-center">
+            <div>BadTux says: <span id="tamagotchi-msg" class="font-bold">{{ tamagotchi_msg }}</span></div>
+            <div>State: <span id="penguin-state" class="font-bold capitalize">Neutral</span></div>
+            <div>Wi-Fi Network: <span id="wifi-ssid" class="font-bold">{{ wifi_ssid }}</span>, MAC: <span id="wifi-mac" class="font-bold">{{ wifi_mac or 'N/A' }}</span>, IP: <span id="wifi-ip" class="font-bold">{{ wifi_ip or 'N/A' }}</span></div>
+            <div>Bluetooth: <span id="bluetooth-status" class="font-bold">{{ 'On' if bluetooth_active else 'Off' }}</span></div>
+            <div>Devices: <span id="bluetooth-devices" class="font-bold">{{ bluetooth_devices|join(', ') or 'None' }}</span></div>
+        </div>
+
+        <div class="counters mb-4 flex justify-center space-x-8">
+            <div>🔌 <span id="open-ports">{{ open_ports }}</span></div>
+            <div>🌐 <span id="scanned-networks">{{ scanned_networks }}</span></div>
+            <div>📡 <span id="seen-ips">{{ seen_ips }}</span></div>
+            <div>🌉 <span id="seen-gateways">{{ seen_gateways }}</span></div>
+        </div>
+
+        <form id="command-form" class="mb-4">
+            <input name="cmd" id="cmd-input" placeholder="Type 'help' for help (automatic scans)" autocomplete="off"
+                   class="w-full bg-gray-800 text-green-400 border border-green-400 p-2 focus:outline-none focus:ring-2 focus:ring-green-400">
+        </form>
+
+        <div id="console" class="console bg-black border border-green-400 p-4">
+            {% for msg in messages %}
+                <div class="{% if '[debug]' in msg %}debug{% endif %}">{{ msg }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="text-center mt-8 text-green-400">
+        Powered by the GOAT Rompelhd
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
